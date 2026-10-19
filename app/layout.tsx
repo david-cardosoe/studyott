@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "StudyOtt",
+  title: { default: "StudyOtt", template: "%s · StudyOtt" },
   description: "Track your study time.",
 };
 

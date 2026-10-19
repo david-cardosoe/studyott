@@ -1,5 +1,12 @@
 import { defineConfig, devices } from "@playwright/test";
 
+// Tests read TEST_USER_PASSWORD and the Supabase URL/key from .env.local.
+try {
+  process.loadEnvFile(".env.local");
+} catch {
+  // CI sets them as real environment variables.
+}
+
 const baseURL = "http://localhost:3000";
 
 export default defineConfig({
