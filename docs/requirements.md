@@ -237,3 +237,4 @@ Database errors use stable keys in the message, with a hint in plain English. Th
   - Hobby (free) plan for a non-commercial app; Pro if StudyOtt ever earns money.
   - Add the custom domain and the production env vars.
 - Error monitoring with Sentry's free tier, and privacy-friendly analytics (optional).
+- **Mascot credit:** while the Twemoji otter placeholder is in use, show "Otter graphic by Twemoji, licensed under CC-BY 4.0" in the footer or on the Terms page (see public/brand/CREDITS.md). Consider an original mascot before trademarking the brand.
