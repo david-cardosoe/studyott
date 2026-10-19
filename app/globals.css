@@ -1,26 +1,152 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not(.light), :root:not(.light) *) {
+      @slot;
+    }
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-border: var(--surface-border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-highlight: var(--highlight);
+  --color-accent-text: var(--accent-text);
+  --color-highlight-text: var(--highlight-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+:root {
+  /* StudyOtt design tokens (see CLAUDE.md) */
+  --accent: #8ea58c;
+  --background: #f7f9f6;
+  --surface: #ffffff;
+  --text: #2d372a;
+  --text-muted: #62735e;
+  --highlight: #d8a47f;
+  --accent-text: #60785e;
+  --highlight-text: #a56232;
+  --surface-border: #e3e8e1;
+
+  /* shadcn/ui variables, mapped onto the tokens above */
+  --foreground: var(--text);
+  --card: var(--surface);
+  --card-foreground: var(--text);
+  --popover: var(--surface);
+  --popover-foreground: var(--text);
+  --primary: var(--accent);
+  --primary-foreground: #2d372a;
+  --secondary: color-mix(in oklab, var(--accent) 15%, var(--surface));
+  --secondary-foreground: var(--text);
+  --muted: color-mix(in oklab, var(--accent) 10%, var(--background));
+  --muted-foreground: var(--text-muted);
+  --accent-foreground: #2d372a;
+  --destructive: #b3261e;
+  --border: var(--surface-border);
+  --input: var(--surface-border);
+  --ring: var(--accent);
+  --chart-1: var(--accent);
+  --chart-2: #6f8a6d;
+  --chart-3: #b4c5b2;
+  --chart-4: #4f644d;
+  --chart-5: #d4ded3;
+  --radius: 0.75rem;
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--text);
+  --sidebar-primary: var(--accent);
+  --sidebar-primary-foreground: #2d372a;
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--text);
+  --sidebar-border: var(--surface-border);
+  --sidebar-ring: var(--accent);
+}
+
+/* Dark: follows the device unless .light is set; .dark forces it.
+   The theme picker (applied before first paint) comes in a later phase. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not(.light) {
+    --background: #1a1f19;
+    --surface: #242b22;
+    --text: #e3e8e1;
+    --text-muted: #a4b3a0;
+    --highlight: #e5ba9e;
+    --accent-text: #8ea58c;
+    --highlight-text: #e5ba9e;
+    /* dark-mode cards get a subtle 1px border */
+    --surface-border: #3a4537;
+    --destructive: #f2b8b5;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root.dark {
+  --background: #1a1f19;
+  --surface: #242b22;
+  --text: #e3e8e1;
+  --text-muted: #a4b3a0;
+  --highlight: #e5ba9e;
+  --accent-text: #8ea58c;
+  --highlight-text: #e5ba9e;
+  /* dark-mode cards get a subtle 1px border */
+  --surface-border: #3a4537;
+  --destructive: #f2b8b5;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
 }
