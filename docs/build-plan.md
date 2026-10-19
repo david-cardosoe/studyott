@@ -275,7 +275,7 @@ Docker Desktop must be running for any phase that touches the database (Phase 1 
 
 ## Phase 10: Launch
 
-**You do first:** buy **studyott.com** at Cloudflare or Porkbun and do a USPTO trademark search.
+**You do first:** ~~buy studyott.com~~ (done 2026-10-19). Do a USPTO trademark search, and set up support@studyott.com email forwarding if not done yet.
 
 **Prompt**
 

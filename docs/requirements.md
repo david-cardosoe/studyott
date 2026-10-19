@@ -215,7 +215,10 @@ Database errors use stable keys in the message, with a hint in plain English. Th
 
 ## 13. Launch checklist (public release)
 
-- Buy **studyott.com** at an at-cost registrar (Cloudflare or Porkbun) and point it at Vercel.
+- **studyott.com** is purchased (2026-10-19). Point it at Vercel in Phase 10.
+- **Support email:**
+  - Google's sign-in screen uses a Google Group (studyott-support@googlegroups.com).
+  - The site, Privacy and Terms use support@studyott.com, forwarded to Gmail.
 - Before investing in branding, do a quick USPTO trademark search for "StudyOtt".
 - Publish **Privacy Policy** and **Terms** pages. Cover:
   - what is stored: Google name, email and avatar, plus study data
