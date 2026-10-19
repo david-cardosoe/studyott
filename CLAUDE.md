@@ -5,6 +5,7 @@ lifetime stats, and Google sign-in. Public release target: studyott.com.
 
 - Full spec: @docs/requirements.md (re-read the relevant section before building a feature)
 - Build order and phase checklists: `docs/build-plan.md`
+- Next.js version rules (read before writing Next.js code): @AGENTS.md
 - Schema source of truth: `supabase/migrations/` (seeded from `docs/schema.sql`)
 
 ## Stack

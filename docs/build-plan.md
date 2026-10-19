@@ -40,7 +40,7 @@ Docker Desktop must be running for any phase that touches the database (Phase 1 
 
 **Done when**
 
-- [ ] `pnpm dev` shows the starter page, and `pnpm lint typecheck test` all pass
+- [ ] `pnpm dev` shows the starter page, and `pnpm lint`, `pnpm typecheck` and `pnpm test` each pass
 - [ ] `pnpm test:e2e` passes
 - [ ] The repo exists on GitHub and `.env.local` is not committed
 
