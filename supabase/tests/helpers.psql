@@ -1,0 +1,72 @@
+-- Shared setup for the pgTAP files in this folder. Each test file runs in
+-- one transaction and rolls back, so these helpers never persist.
+-- (Not a test itself: pg_prove only runs *.sql files.)
+--
+--   select tests.create_user(id, email, meta)   sign up a user (fires the new-user trigger)
+--   select tests.as_user(id);                   act as that signed-in user (RLS applies)
+--   select tests.as_anon();                     act as a signed-out visitor
+--   select tests.as_admin();                    back to the test runner's role, no user
+--   tests.remember(key, value) / tests.recall(key)   carry ids and results between statements
+
+set local client_min_messages = warning;
+create extension if not exists pgtap with schema extensions;
+
+create schema tests;
+grant usage on schema tests to anon, authenticated;
+
+create function tests.create_user(p_id uuid, p_email text, p_meta jsonb default '{}')
+returns void
+language sql
+as $$
+  insert into auth.users (id, email, raw_user_meta_data) values (p_id, p_email, p_meta);
+$$;
+
+create function tests.as_user(p_id uuid)
+returns void
+language plpgsql
+as $$
+begin
+  perform set_config('request.jwt.claims',
+                     json_build_object('sub', p_id, 'role', 'authenticated')::text, true);
+  perform set_config('role', 'authenticated', true);
+end;
+$$;
+
+create function tests.as_anon()
+returns void
+language plpgsql
+as $$
+begin
+  perform set_config('request.jwt.claims', json_build_object('role', 'anon')::text, true);
+  perform set_config('role', 'anon', true);
+end;
+$$;
+
+-- SET ROLE is checked against the session user, so this works even while
+-- the current role is authenticated or anon.
+create function tests.as_admin()
+returns void
+language plpgsql
+as $$
+begin
+  perform set_config('request.jwt.claims', '', true);
+  perform set_config('role', session_user, true);
+end;
+$$;
+
+create function tests.remember(p_key text, p_value text)
+returns void
+language sql
+as $$
+  select set_config('tests.' || p_key, p_value, true);
+$$;
+
+create function tests.recall(p_key text)
+returns text
+language sql
+stable
+as $$
+  select current_setting('tests.' || p_key);
+$$;
+
+grant execute on all functions in schema tests to anon, authenticated;
