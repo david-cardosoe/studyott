@@ -3,8 +3,8 @@ import { Suspense, type ReactNode } from "react";
 import { SignOutButton } from "@/components/sign-out-button";
 import { getCurrentUser, isOnboarded } from "@/lib/auth";
 
-// Every signed-in page. proxy.ts already sends signed-out visitors to /login;
-// this re-checks the session and sends new users to the one-time Welcome page.
+// Every signed-in page. proxy.ts already sends signed-out visitors to /login
+// and new users to /welcome; this re-checks both as the authoritative gate.
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <Suspense fallback={<p className="p-6 text-muted-foreground">Loading…</p>}>

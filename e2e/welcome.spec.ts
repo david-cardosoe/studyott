@@ -32,6 +32,10 @@ test("first sign-in goes through Welcome once", async ({ page }) => {
   await devSignIn(page, email);
 
   await expect(page).toHaveURL(/\/welcome$/);
+
+  // Until onboarded, every signed-in page leads to Welcome.
+  await page.goto("/");
+  await expect(page).toHaveURL(/\/welcome$/);
   await expect(
     page.getByText(/You're @otto_\d{4}\. Want a different username\?/),
   ).toBeVisible();

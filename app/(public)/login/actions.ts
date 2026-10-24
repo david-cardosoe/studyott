@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { pathAfterSignIn } from "@/lib/auth";
 import { isDevLoginEnabled } from "@/lib/dev-login";
 import type { ActionResult } from "@/lib/errors";
 import { createClient } from "@/lib/supabase/server";
@@ -43,9 +44,9 @@ export async function devSignIn(
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword(parsed.data);
+  const { data, error } = await supabase.auth.signInWithPassword(parsed.data);
   if (error) {
     return { ok: false, error: "Wrong email or password." };
   }
-  redirect("/");
+  redirect(await pathAfterSignIn(supabase, data.user.id));
 }
