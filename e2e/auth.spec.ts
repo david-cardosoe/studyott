@@ -24,6 +24,8 @@ test("sign in, land on Home, sign out", async ({ page }) => {
   await page.goto("/welcome");
   await expect(page).toHaveURL(/\/$/);
 
+  // Sign out lives in Settings.
+  await page.goto("/settings");
   await page.getByRole("button", { name: "Sign out" }).click();
   await expect(page).toHaveURL(/\/login$/);
 

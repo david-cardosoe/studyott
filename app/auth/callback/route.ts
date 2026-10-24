@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { pathAfterSignIn } from "@/lib/auth";
+import { afterSignIn } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 
 // Google sends the user back here (via Supabase Auth) with a one-time code.
@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     const supabase = await createClient();
     const { data, error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      const path = await pathAfterSignIn(supabase, data.user.id);
+      const path = await afterSignIn(supabase, data.user.id);
       return NextResponse.redirect(new URL(path, request.url));
     }
   }

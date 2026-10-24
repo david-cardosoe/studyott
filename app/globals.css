@@ -23,6 +23,7 @@
   --color-highlight: var(--highlight);
   --color-accent-text: var(--accent-text);
   --color-highlight-text: var(--highlight-text);
+  --color-nav-active: var(--nav-active);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
@@ -65,6 +66,8 @@
 }
 
 :root {
+  color-scheme: light dark;
+
   /* StudyOtt design tokens (see CLAUDE.md) */
   --accent: #8ea58c;
   --background: #f7f9f6;
@@ -75,6 +78,8 @@
   --accent-text: #60785e;
   --highlight-text: #a56232;
   --surface-border: #e3e8e1;
+  /* sage-tinted background for the active nav tab */
+  --nav-active: color-mix(in oklab, var(--accent) 30%, var(--surface));
 
   /* shadcn/ui variables, mapped onto the tokens above */
   --foreground: var(--text);
@@ -109,8 +114,12 @@
   --sidebar-ring: var(--accent);
 }
 
-/* Dark: follows the device unless .light is set; .dark forces it.
-   The theme picker (applied before first paint) comes in a later phase. */
+/* Dark follows the device unless .light is set; .dark forces it. The classes
+   come from the theme cookie, applied before first paint (lib/theme.ts). */
+:root.light {
+  color-scheme: light;
+}
+
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
     --background: #1a1f19;
@@ -127,6 +136,7 @@
 }
 
 :root.dark {
+  color-scheme: dark;
   --background: #1a1f19;
   --surface: #242b22;
   --text: #e3e8e1;
