@@ -11,3 +11,10 @@ must say: "Otter graphic by Twemoji, licensed under CC-BY 4.0."
 
 This is a placeholder. Replace it with an original mascot before launch if
 StudyOtt needs a logo it can own and trademark.
+
+## App icons
+
+There is no `logo.svg` yet, so the favicon (`app/icon.svg`), Apple touch icon
+(`app/apple-icon.png`) and PWA icons (`public/icons/`) are all made from
+`mascot.svg` and carry the same Twemoji attribution. Regenerate the PNGs with
+`pnpm icons` after replacing the mascot or adding a logo.
