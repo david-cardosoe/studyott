@@ -79,7 +79,7 @@ preview, check both themes and a 390px-wide phone viewport.
 | `--background` | #F7F9F6 | #1A1F19 |
 | `--surface` (cards, modals) | #FFFFFF | #242B22 |
 | `--text` | #2D372A | #E3E8E1 |
-| `--text-muted` | #62735E | #A4B3A0 |
+| `--text-muted` | #4D5C49 | #A4B3A0 |
 | `--highlight` (timer, streaks) | #D8A47F | #E5BA9E |
 | `--accent-text` (sage used as text) | #60785E | #8EA58C |
 | `--highlight-text` (timer digits, terracotta text) | #A56232 | #E5BA9E |

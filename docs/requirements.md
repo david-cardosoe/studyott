@@ -193,7 +193,7 @@ Database errors use stable keys in the message, with a hint in plain English. Th
 | Background | `#F7F9F6` | `#1A1F19` |
 | Surface / cards | `#FFFFFF` | `#242B22` |
 | Primary text | `#2D372A` | `#E3E8E1` |
-| Secondary text | `#62735E` | `#A4B3A0` |
+| Secondary text | `#4D5C49` | `#A4B3A0` |
 | Highlight / timer | `#D8A47F` | `#E5BA9E` |
 
 - Primary buttons are sage `#8EA58C` with dark text `#2D372A` in both modes.
@@ -211,6 +211,7 @@ Database errors use stable keys in the message, with a hint in plain English. Th
   - **Approved light-mode text shades:**
     - `--highlight-text: #A56232` for timer digits and terracotta text (4.5:1)
     - `--accent-text: #60785E` for sage links and labels (4.6:1)
+    - `--text-muted: #4D5C49` for secondary text and inactive tabs (6.7:1 on the background). Darkened from the original #62735E (4.8:1) on 2026-10-24 for easier reading.
   - In dark mode, both tokens equal the normal colors. The original light colors stay for fills, rings, bars and decoration.
 
 ## 13. Launch checklist (public release)
